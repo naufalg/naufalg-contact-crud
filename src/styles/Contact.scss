@@ -1,0 +1,27 @@
+.dataListText {
+    text-align: center;
+}
+
+
+/* media query */
+/* large screen */
+@media (max-width: 1200px) {
+  
+}
+
+/* small screen */
+@media (max-width: 992px) {
+
+}
+
+/* tablet */
+@media (max-width: 768px) {
+    .dataListText {
+        text-align: left;
+    }    
+}
+
+/* phone */
+@media (max-width: 576px) {
+  
+}

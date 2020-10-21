@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// dependencies
+import React from "react";
+import "./styles/App.scss";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// components
+import ResponsiveDrawer from "./components/web-elements/ResponsiveDrawer";
+
+// pages
+import Home from "./pages/Home";
+import Contacts from "./pages/Contacts";
+import AddContacts from "./pages/AddContact";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/contact/:id">
+            <Contacts />
+          </Route>
+          <Route path="/addcontact">
+            <AddContacts />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
