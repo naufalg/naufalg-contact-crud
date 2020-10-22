@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
   linkClass: {
     textDecoration: "none",
-    color: "secondary",
+    color: "#070707",
   },
 }));
 
@@ -101,6 +101,10 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const pushHome = () => {
+    history.push("/");
+  };
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -117,20 +121,25 @@ function ResponsiveDrawer(props) {
         {allContacts !== undefined ? (
           allContacts.map((item, index) => (
             <div key={index}>
-              <ListItem
-                onClick={() => {
-                  history.push(`contact/${item.id}`);
-                }}
-                button
-              >
-                <Avatar
-                  alt="Avatar"
-                  src={item.photo}
-                  className={classes.avaimg}
-                />
-                &nbsp;&nbsp;
-                <ListItemText primary={`${item.firstName} ${item.lastName}`} />
-              </ListItem>
+              <a className={classes.linkClass} href={`/contact/${item.id}`}>
+                <ListItem
+                  // onClick={() => {
+                  //   // pushHome();
+                  //   history.push(`/contact/${item.id}`);
+                  // }}
+                  button
+                >
+                  <Avatar
+                    alt="Avatar"
+                    src={item.photo}
+                    className={classes.avaimg}
+                  />
+                  &nbsp;&nbsp;
+                  <ListItemText
+                    primary={`${item.firstName} ${item.lastName}`}
+                  />
+                </ListItem>
+              </a>
             </div>
           ))
         ) : (
@@ -139,17 +148,6 @@ function ResponsiveDrawer(props) {
           </div>
         )}
       </List>
-      {/* <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List> */}
     </div>
   );
 
@@ -178,7 +176,6 @@ function ResponsiveDrawer(props) {
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -190,7 +187,7 @@ function ResponsiveDrawer(props) {
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}
           >
             {drawer}
@@ -208,11 +205,6 @@ function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
-      {/* <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>Lorem ipsum</Typography>
-        <Typography paragraph>Cons </Typography>
-      </main> */}
     </div>
   );
 }

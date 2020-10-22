@@ -12,9 +12,9 @@ export const setCreate = (value) => {
 export const createActions = (values, event, history) => (dispatch) => {
     event.preventDefault();
     return axios
-        .post(`${process.env.REACT_APP_CONTACT_API}/`, values)
+        .post(`${process.env.REACT_APP_CONTACT_API}`, values)
         .then((response) => {
-            console.log('res', response);
+            console.log('res create', response);
             dispatch(setCreate(response.data));
             history.push('/');
         })

@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCrudActions } from "../redux/actions/getCrud.action";
-import { getDetailActions } from "../redux/actions/getDetail.action";
 
 // material ui
 import Typography from "@material-ui/core/Typography";
@@ -25,8 +24,10 @@ import "../styles/Contact.scss";
 import ResponsiveDrawer from "../components/web-elements/ResponsiveDrawer";
 import placeholder from "../components/assets/images/avatar-placeholder.png";
 import "../styles/Home.scss";
-import {createActions} from '../redux/actions/create.action';
-
+import { createActions } from "../redux/actions/create.action";
+import { updateActions } from "../redux/actions/update.action";
+import { getDetailActions } from "../redux/actions/getDetail.action";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 // material ui style
 const drawerWidth = 300;
 
@@ -57,27 +58,31 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
-  buttonCreate: {
+  buttonEdit: {
     margin: "5px 0 0 8px",
   },
 }));
 
-function AddContact() {
+function EditContact() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [createState, setCreateState] = useState({
-    firstName: "",
-    lastName: "",
-    age: "",
-    photo: "",
+  const detailContact = useSelector(
+    (state) => state.getDetailReducer.data.data
+  );
+
+  const [updateState, setUpdateState] = useState({
+    firstName: `${detailContact.firstName}`,
+    lastName: `${detailContact.lastName}`,
+    age: `${detailContact.age}`,
+    photo: `${detailContact.photo}`,
   });
 
   //handle change form
   const handleChange = (event) => {
-    setCreateState({
-      ...createState,
+    setUpdateState({
+      ...updateState,
       [event.target.name]: event.target.value,
     });
   };
@@ -91,15 +96,28 @@ function AddContact() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <br />
-                <Typography variant="h6">Add contact</Typography>
+                <Grid item xs={12}>
+                  <Link to={`/contact/${detailContact.id}`}>
+                    <Button>
+                      <ArrowBackIcon />
+                    </Button>
+                  </Link>
+                </Grid>
+                <Typography variant="h6">Edit Contact</Typography>
                 <form
                   className={classes.formClass}
                   noValidate
                   autoComplete="off"
                   onSubmit={(event) => {
-                    dispatch(createActions(createState, event, history));
-                }}
+                    dispatch(
+                      updateActions(
+                        updateState,
+                        event,
+                        history,
+                        detailContact.id
+                      )
+                    );
+                  }}
                 >
                   <TextField
                     id="firstNameInput"
@@ -107,7 +125,7 @@ function AddContact() {
                     variant="outlined"
                     type="text"
                     name="firstName"
-                    value={createState.firstName}
+                    value={updateState.firstName}
                     onChange={(event) => handleChange(event)}
                   />
                   <br />
@@ -117,7 +135,7 @@ function AddContact() {
                     variant="outlined"
                     type="text"
                     name="lastName"
-                    value={createState.lastName}
+                    value={updateState.lastName}
                     onChange={(event) => handleChange(event)}
                   />
                   <br />
@@ -127,7 +145,7 @@ function AddContact() {
                     variant="outlined"
                     type="text"
                     name="age"
-                    value={createState.age}
+                    value={updateState.age}
                     onChange={(event) => handleChange(event)}
                   />
                   <br />
@@ -137,17 +155,17 @@ function AddContact() {
                     variant="outlined"
                     type="text"
                     name="photo"
-                    value={createState.photo}
+                    value={updateState.photo}
                     onChange={(event) => handleChange(event)}
                   />
                   <br />
                   <Button
-                    className={classes.buttonCreate}
+                    className={classes.buttonEdit}
                     variant="contained"
                     color="primary"
                     type="submit"
                   >
-                    Create
+                    Update Profile
                   </Button>
                 </form>
               </Paper>
@@ -159,4 +177,4 @@ function AddContact() {
   );
 }
 
-export default AddContact;
+export default EditContact;

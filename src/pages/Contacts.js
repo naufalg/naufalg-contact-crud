@@ -13,6 +13,15 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import Button from "@material-ui/core/Button";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 // pages
 
@@ -23,6 +32,7 @@ import placeholder from "../components/assets/images/avatar-placeholder.png";
 import "../styles/Home.scss";
 import { getCrudActions } from "../redux/actions/getCrud.action";
 import { getDetailActions } from "../redux/actions/getDetail.action";
+import { deleteActions } from "../redux/actions/delete.action";
 
 
 // material ui style
@@ -64,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home() {
+function Contact() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -74,11 +84,21 @@ function Home() {
 
   useEffect(() => {
     dispatch(getDetailActions(contactId));
-  }, [dispatch]);
+  }, []);
 
   const detailContactData = useSelector(
     (state) => state.getDetailReducer.data.data
   );
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.root}>
@@ -91,6 +111,55 @@ function Home() {
               <Paper className={classes.paper}>
                 {detailContactData !== undefined ? (
                   <div>
+                    <Grid xs={12}>
+                      <Link to="/">
+                        <Button>
+                          <ArrowBackIcon />
+                        </Button>
+                      </Link>
+                      <Link to={`/edit/${detailContactData.id}`}>
+                        <Button
+                        // onClick={() => {
+                        //   history.push(`edit/${detailContactData.id}`);
+                        // }}
+                        >
+                          <EditIcon />
+                        </Button>
+                      </Link>
+                        <Button 
+                        //  onClick={handleClickOpen}
+                         onClick={() => dispatch(deleteActions(detailContactData.id))}
+                         >
+                          <DeleteForeverIcon />
+                        </Button>
+                        {/* <Dialog
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="alert-dialog-title"
+                          aria-describedby="alert-dialog-description"
+                        >
+                          <DialogTitle id="alert-dialog-title">
+                            {"Delete Contact"}
+                          </DialogTitle>
+                          <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                              {`Are you sure want to delete ${detailContactData.firstName} ${detailContactData.lastName} ?`}
+                            </DialogContentText>
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={handleClose} >
+                              Cancel
+                            </Button>
+                            <Button
+                              onClick={() => dispatch(deleteActions(detailContactData.id))}
+                              color="primary"
+                              autoFocus
+                            >
+                              Delete
+                            </Button>
+                          </DialogActions>
+                        </Dialog> */}
+                    </Grid>
                     <Grid item xs={12}>
                       <Avatar
                         alt="Avatar"
@@ -138,4 +207,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Contact;
