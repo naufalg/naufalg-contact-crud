@@ -5,14 +5,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 
 // components
-import ResponsiveDrawer from "./components/web-elements/ResponsiveDrawer";
 import {
   createMuiTheme,
-  makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
 import lightBlue from '@material-ui/core/colors/lightBlue';

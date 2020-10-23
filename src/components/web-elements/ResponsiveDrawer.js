@@ -1,23 +1,19 @@
 // react
 import React, { useEffect } from "react";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCrudActions } from "../../redux/actions/getCrud.action";
 
 // material ui
-import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -25,8 +21,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-import Icon from "@material-ui/core/Icon";
-import Grid from "@material-ui/core/Grid";
 
 const drawerWidth = 300;
 
@@ -78,18 +72,12 @@ const useStyles = makeStyles((theme) => ({
 
 function ResponsiveDrawer(props) {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getCrudActions());
   }, [dispatch]);
 
-  const allContacts = useSelector((state) => state.getCrudReducer.data.data);
-  // console.log("aallContacts", allContacts);
-
-  // allContacts !== undefined
-  //   ? console.log("allContacts", allContacts)
-  //   : console.log("none");
+  const allContacts = useSelector((state) => state.getCrudReducer.data.result);
 
   // material ui
   const { window } = props;
@@ -99,10 +87,6 @@ function ResponsiveDrawer(props) {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const pushHome = () => {
-    history.push("/");
   };
 
   const drawer = (
@@ -121,14 +105,8 @@ function ResponsiveDrawer(props) {
         {allContacts !== undefined ? (
           allContacts.map((item, index) => (
             <div key={index}>
-              <a className={classes.linkClass} href={`/contact/${item.id}`}>
-                <ListItem
-                  // onClick={() => {
-                  //   // pushHome();
-                  //   history.push(`/contact/${item.id}`);
-                  // }}
-                  button
-                >
+              <a className={classes.linkClass} href={`/contact/${item._id}`}>
+                <ListItem button>
                   <Avatar
                     alt="Avatar"
                     src={item.photo}

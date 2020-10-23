@@ -2,19 +2,14 @@
 // react
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useParams, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getCrudActions } from "../redux/actions/getCrud.action";
-import { getDetailActions } from "../redux/actions/getDetail.action";
+import {  useDispatch } from "react-redux";
 
 // material ui
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -23,12 +18,10 @@ import Button from "@material-ui/core/Button";
 // components
 import "../styles/Contact.scss";
 import ResponsiveDrawer from "../components/web-elements/ResponsiveDrawer";
-import placeholder from "../components/assets/images/avatar-placeholder.png";
 import "../styles/Home.scss";
 import {createActions} from '../redux/actions/create.action';
 
 // material ui style
-const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,6 +60,7 @@ function AddContact() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // create contact form useState
   const [createState, setCreateState] = useState({
     firstName: "",
     lastName: "",

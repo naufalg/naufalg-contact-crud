@@ -12,7 +12,7 @@ export const deleteActions = (id) => (dispatch) => {
   return axios
     .delete(`${process.env.REACT_APP_CONTACT_API}/${id}`)
     .then((response) => {
-        console.log("res delete", response);
+        // console.log("res delete", response);
     //   dispatch(getCrudRequest());
         dispatch(setDelete(response.data));
       document.location.href = "/";

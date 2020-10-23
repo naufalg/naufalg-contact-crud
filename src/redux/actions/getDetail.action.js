@@ -26,7 +26,7 @@ export const getDetailFailed = (error) => {
 export function getDetailActions(id) {
   return function (dispatch) {
     dispatch(getDetailRequest(id));
-    console.log("tes action detail");
+    // console.log("tes action detail");
     const contactId = id;
     const getUrl = process.env.REACT_APP_CONTACT_API;
     const url1 = `${getUrl}/${contactId}`;

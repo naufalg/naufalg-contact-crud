@@ -1,26 +1,12 @@
-// Dependencies
-// react
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getCrudActions } from "../redux/actions/getCrud.action";
-
-// material ui
+import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
 
-// pages
-
-// components
 import ResponsiveDrawer from "../components/web-elements/ResponsiveDrawer";
-import placeholder from "../components/assets/images/avatar-placeholder.png";
-import "../styles/Home.scss";
 
-// material ui style
 const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
@@ -42,29 +28,18 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    // display: "",
+    display: "flex",
     overflow: "auto",
-    // flexDirection: "column",
+    flexDirection: "column",
   },
-  avaimg: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    margin: "auto",
-  },
-  caption: {
-    margin: "auto",
-    fontStyle:"italic"
+  textCaption: {
+    fontStyle: "italic",
+    margin: "5vh auto",
   },
 }));
 
 function Home() {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  useEffect(() => {
-    dispatch(getCrudActions());
-  }, [dispatch]);
 
   return (
     <div className={classes.root}>
@@ -75,15 +50,9 @@ function Home() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <br />
-                <Grid container spacing={1}>
-                  <Typography
-                    className={classes.caption}
-                  >
-                    Select contact in the list
-                  </Typography>
-                </Grid>
-                <br />
+                <Typography className={classes.textCaption}>
+                  Select contact from the list
+                </Typography>
               </Paper>
             </Grid>
           </Grid>

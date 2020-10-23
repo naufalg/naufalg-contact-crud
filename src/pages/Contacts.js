@@ -1,13 +1,12 @@
 // Dependencies
 // react
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // material ui
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -30,7 +29,6 @@ import "../styles/Contact.scss";
 import ResponsiveDrawer from "../components/web-elements/ResponsiveDrawer";
 import placeholder from "../components/assets/images/avatar-placeholder.png";
 import "../styles/Home.scss";
-import { getCrudActions } from "../redux/actions/getCrud.action";
 import { getDetailActions } from "../redux/actions/getDetail.action";
 import { deleteActions } from "../redux/actions/delete.action";
 
@@ -77,17 +75,16 @@ const useStyles = makeStyles((theme) => ({
 function Contact() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
   const params = useParams();
 
   const contactId = params.id;
 
   useEffect(() => {
     dispatch(getDetailActions(contactId));
-  }, []);
+  }, [dispatch]);
 
   const detailContactData = useSelector(
-    (state) => state.getDetailReducer.data.data
+    (state) => state.getDetailReducer.data.Contacts
   );
 
   const [open, setOpen] = React.useState(false);
@@ -111,13 +108,13 @@ function Contact() {
               <Paper className={classes.paper}>
                 {detailContactData !== undefined ? (
                   <div>
-                    <Grid xs={12}>
+                    <Grid item xs={12}>
                       <Link to="/">
                         <Button>
                           <ArrowBackIcon />
                         </Button>
                       </Link>
-                      <Link to={`/edit/${detailContactData.id}`}>
+                      <Link to={`/edit/${detailContactData._id}`}>
                         <Button
                         // onClick={() => {
                         //   history.push(`edit/${detailContactData.id}`);
@@ -127,12 +124,12 @@ function Contact() {
                         </Button>
                       </Link>
                         <Button 
-                        //  onClick={handleClickOpen}
-                         onClick={() => dispatch(deleteActions(detailContactData.id))}
+                         onClick={handleClickOpen}
+                        //  onClick={() => dispatch(deleteActions(detailContactData.id))}
                          >
                           <DeleteForeverIcon />
                         </Button>
-                        {/* <Dialog
+                        <Dialog
                           open={open}
                           onClose={handleClose}
                           aria-labelledby="alert-dialog-title"
@@ -151,20 +148,20 @@ function Contact() {
                               Cancel
                             </Button>
                             <Button
-                              onClick={() => dispatch(deleteActions(detailContactData.id))}
-                              color="primary"
+                              onClick={() => dispatch(deleteActions(detailContactData._id))}
+                              color="secondary"
                               autoFocus
                             >
                               Delete
                             </Button>
                           </DialogActions>
-                        </Dialog> */}
+                        </Dialog>
                     </Grid>
                     <Grid item xs={12}>
                       <Avatar
                         alt="Avatar"
                         src={
-                          detailContactData !== undefined
+                          detailContactData 
                             ? detailContactData.photo
                             : placeholder
                         }
