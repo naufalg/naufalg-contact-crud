@@ -34,7 +34,7 @@ Built the Movie DB front-end for learning and experimenting front-end website de
 
 ### Installation
 
-1. Contact me first to get the API:  [Naufal Ghifari](naufalghifari7@gmail.com)
+1. Contact me first to get the API:  [Naufal Ghifari](mailto:naufalghifari7@gmail.com)
 2. Clone the repo
 
 ```sh
