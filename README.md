@@ -1,68 +1,66 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+  <h3>Contacts CRUD App Front-end</h3>
+    <br />
+    <a href="https://naufalg-contact-crud.vercel.app/">View Demo</a>
+  <br/>
 
-In the project directory, you can run:
+<!-- TABLE OF CONTENTS -->
 
-### `yarn start`
+## Table of Contents
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+- [Contact](#contact)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
 
-### `yarn test`
+## About The Project
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Built the Movie DB front-end for learning and experimenting front-end website development using react with search, pagination, and movie detail feature.
 
-### `yarn build`
+### Built With
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org)
+- [Material UI](https://github.com/mui-org/material-ui)
+- [Sass](https://github.com/sass/node-sass)
+- [Axios](https://github.com/axios/axios)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<!-- GETTING STARTED -->
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `yarn eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Contact me first to get the API:  [Naufal Ghifari](naufalghifari7@gmail.com)
+2. Clone the repo
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+git clone https://github.com/naufalg/naufalg-contact-crud.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Install NPM packages
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+npm install
+```
 
-## Learn More
+4. Enter the API in `.env`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```JS
+REACT_APP_OMDB_API_KEY=ENTER YOUR API
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Start the react-scripts
 
-### Code Splitting
+```JS
+npm run start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+<!-- CONTACT -->
 
-### Analyzing the Bundle Size
+## Contact
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Project Link: [https://github.com/naufalg/naufalg-contact-crud](https://github.com/naufalg/movieDB-naufalg)

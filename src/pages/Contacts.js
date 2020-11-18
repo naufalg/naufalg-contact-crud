@@ -32,7 +32,6 @@ import "../styles/Home.scss";
 import { getDetailActions } from "../redux/actions/getDetail.action";
 import { deleteActions } from "../redux/actions/delete.action";
 
-
 // material ui style
 const drawerWidth = 300;
 
@@ -123,45 +122,46 @@ function Contact() {
                           <EditIcon />
                         </Button>
                       </Link>
-                        <Button 
-                         onClick={handleClickOpen}
+                      <Button
+                        onClick={handleClickOpen}
                         //  onClick={() => dispatch(deleteActions(detailContactData.id))}
-                         >
-                          <DeleteForeverIcon />
-                        </Button>
-                        <Dialog
-                          open={open}
-                          onClose={handleClose}
-                          aria-labelledby="alert-dialog-title"
-                          aria-describedby="alert-dialog-description"
-                        >
-                          <DialogTitle id="alert-dialog-title">
-                            {"Delete Contact"}
-                          </DialogTitle>
-                          <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
-                              {`Are you sure want to delete ${detailContactData.firstName} ${detailContactData.lastName} ?`}
-                            </DialogContentText>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button onClick={handleClose} >
-                              Cancel
-                            </Button>
-                            <Button
-                              onClick={() => dispatch(deleteActions(detailContactData._id))}
-                              color="secondary"
-                              autoFocus
-                            >
-                              Delete
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
+                      >
+                        <DeleteForeverIcon />
+                      </Button>
+                      <Dialog
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                      >
+                        <DialogTitle id="alert-dialog-title">
+                          {"Delete Contact"}
+                        </DialogTitle>
+                        <DialogContent>
+                          <DialogContentText id="alert-dialog-description">
+                            {`Are you sure want to delete ${detailContactData.firstName} ${detailContactData.lastName} ?`}
+                          </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={handleClose}>Cancel</Button>
+                          <Button
+                            onClick={() =>
+                              dispatch(deleteActions(detailContactData._id))
+                            }
+                            color="secondary"
+                            autoFocus
+                          >
+                            Delete
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
                     </Grid>
+                    <br/>
                     <Grid item xs={12}>
                       <Avatar
                         alt="Avatar"
                         src={
-                          detailContactData 
+                          detailContactData
                             ? detailContactData.photo
                             : placeholder
                         }
