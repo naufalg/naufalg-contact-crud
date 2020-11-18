@@ -18,7 +18,7 @@
 
 ## About The Project
 
-Built the Movie DB front-end for learning and experimenting front-end website development using react with search, pagination, and movie detail feature.
+Built the Contact app front-end for learning and experimenting front-end website development using react with CRUD feature.
 
 ### Built With
 
